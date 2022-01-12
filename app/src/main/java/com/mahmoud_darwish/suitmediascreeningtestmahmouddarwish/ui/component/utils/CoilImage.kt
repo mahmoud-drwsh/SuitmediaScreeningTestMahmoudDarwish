@@ -1,4 +1,4 @@
-package com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.ui.component
+package com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.ui.component.utils
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.size
@@ -29,11 +29,13 @@ fun CoilImage(url: String, imageDescription: String, modifier: Modifier = Modifi
 
     if (isImageNotReady(painter)) {
         // show a loading indicator while the image is being loaded
-        CircularProgressIndicator(modifier
-            .size(32.dp)
-            .wrapContentSize())
+        CircularProgressIndicator(
+            modifier
+                .size(32.dp)
+                .wrapContentSize()
+        )
     } else {
-        Surface(modifier.shadow(4.dp, RoundedCornerShape(4.dp))) {
+        Surface(modifier.shadow(4.dp, RoundedCornerShape(0.5f))) {
             Image(
                 painter = painter,
                 contentDescription = imageDescription,
