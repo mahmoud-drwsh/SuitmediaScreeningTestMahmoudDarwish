@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface Service {
     @GET("users")
-    fun getMovies(
+    fun getUsers(
         @Query("page") page: Int = 1,
         @Query("per_page") perPage: Int = 10,
     ): Flow<ApiResponse>
