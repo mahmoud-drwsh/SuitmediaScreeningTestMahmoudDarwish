@@ -3,7 +3,7 @@ package com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.ui.component.ut
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -35,7 +35,7 @@ fun CoilImage(url: String, imageDescription: String, modifier: Modifier = Modifi
                 .wrapContentSize()
         )
     } else {
-        Surface(modifier.shadow(4.dp, RoundedCornerShape(0.5f))) {
+        Surface(modifier.shadow(4.dp, CircleShape)) {
             Image(
                 painter = painter,
                 contentDescription = imageDescription,
