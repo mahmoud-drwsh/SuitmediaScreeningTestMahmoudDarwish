@@ -2,7 +2,6 @@ package com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.ui.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -12,11 +11,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.Resource
-import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.data.model.domain.User
+import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.data.model.remote.User
 import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.getPalindromeCheckerDialogMessage
 import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.view_model.MainViewModel
 
@@ -27,7 +25,7 @@ sealed class Destinations {
     abstract fun Content(
         stackEntry: NavBackStackEntry,
         navController: NavHostController
-    ): Unit
+    )
 
     object Home : Destinations() {
         override val route: String = "home"
@@ -87,7 +85,7 @@ sealed class Destinations {
 
         @Composable
         override fun Content(stackEntry: NavBackStackEntry, navController: NavHostController) {
-            val viewModel = viewModel<MainViewModel>()
+            val viewModel = hiltViewModel<MainViewModel>()
 
             val users: Resource<List<User>> by viewModel.users.collectAsState(initial = Resource.Loading)
 

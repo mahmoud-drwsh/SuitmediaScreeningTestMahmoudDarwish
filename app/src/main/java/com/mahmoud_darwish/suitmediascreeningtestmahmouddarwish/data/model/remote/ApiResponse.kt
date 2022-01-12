@@ -1,11 +1,11 @@
-package com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.data.model.domain
+package com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.data.model.remote
 
 
 import com.google.gson.annotations.SerializedName
 
 data class ApiResponse(
     @SerializedName("data")
-    val `data`: List<User> = listOf(),
+    val users: List<User> = listOf(),
     @SerializedName("page")
     val page: Int = 0,
     @SerializedName("per_page")

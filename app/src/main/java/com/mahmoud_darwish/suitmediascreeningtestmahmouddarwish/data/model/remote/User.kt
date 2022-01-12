@@ -1,4 +1,4 @@
-package com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.data.model.domain
+package com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.data.model.remote
 
 import com.google.gson.annotations.SerializedName
 
