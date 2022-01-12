@@ -22,5 +22,5 @@ This project was written using Kotlin and the Jetpack Comopse UI library.
 
 
 # Download
-Link to be added.
+[Download APK](https://github.com/mahmoud-drwsh/SuitmediaScreeningTestMahmoudDarwish/releases/download/v1.0.0/SuitmediaScreeningTestMahmoudDarwish.apk)
 
