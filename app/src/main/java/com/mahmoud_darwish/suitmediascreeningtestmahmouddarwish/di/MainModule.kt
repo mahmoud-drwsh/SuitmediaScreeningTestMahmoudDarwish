@@ -1,7 +1,7 @@
 package com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.di
 
-import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.data.model.domain.api.Constants
-import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.data.model.domain.api.Service
+import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.data.api.Constants
+import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.data.api.Service
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
