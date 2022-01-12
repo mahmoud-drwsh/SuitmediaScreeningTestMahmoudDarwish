@@ -1,33 +1,32 @@
 package com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.view_model
 
 import androidx.lifecycle.ViewModel
-import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.Resource
+import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.data.repo.UserNameRepo
 import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.data.api.Service
 import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.data.model.remote.User
+import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.data.repo.UsersRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    service: Service
+    private val userNameRepo: UserNameRepo,
+    usersRepo: UsersRepo
 ) : ViewModel() {
 
-    val userName: Flow<String> = flow { emit("Mahmoud Darwish") }
+    val userName = userNameRepo.userName
 
-    val users = flow {
-        emit(Resource.Loading)
+    fun setUserName(value: String) = userNameRepo.setUserName(value)
 
-        val users: List<User> = service.getUsers().users
+    private val selectedUser = userNameRepo.selectedUser
 
-        if (users.isEmpty())
-            emit(Resource.Error("No records were found"))
-        else
-            emit(Resource.Success(users))
-
-    }.catch {
-        emit(Resource.Error(it.localizedMessage ?: "Unexpected error"))
+    val selectedUserName = userNameRepo.selectedUser.map {
+        if (it.firstName.isNotEmpty()) "${it.firstName} ${it.lastName}"
+        else "A user has not been selected"
     }
+
+    fun setSelectedUser(value: User) = userNameRepo.setSelectedUser(value)
+
+    val users = usersRepo.users
 }
