@@ -5,8 +5,10 @@ This project was created and developed using **Android Studio Bumblebee version 
 This project was written using Kotlin and The Jetpack Comopse UI library. 
 
 # Screenshots
-To be added.
+![Screenshot_1641970201](https://user-images.githubusercontent.com/20232485/149078152-beea1062-e5c0-4f94-a3b1-75b1fb5ec537.png)
+
+More to be added.
 
 # Download
 Link to be added.
-![Screenshot_1641970201](https://user-images.githubusercontent.com/20232485/149078152-beea1062-e5c0-4f94-a3b1-75b1fb5ec537.png)
+
