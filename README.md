@@ -10,10 +10,7 @@ This project was written using Kotlin and the Jetpack Comopse UI library.
 
 <img src="https://user-images.githubusercontent.com/20232485/149094442-4c4bcc5b-2c33-4115-9a25-5a0491a486cf.png" width="500" />
 
-![Screenshot_1641977382]()
-
-
-More to be added.
+**More to be added.**
 
 # Download
 Link to be added.
