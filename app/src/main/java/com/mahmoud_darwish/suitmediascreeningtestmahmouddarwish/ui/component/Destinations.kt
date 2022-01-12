@@ -1,13 +1,13 @@
 package com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.ui.component
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -16,6 +16,7 @@ import androidx.navigation.NavHostController
 import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.Resource
 import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.data.model.remote.User
 import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.getPalindromeCheckerDialogMessage
+import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.ui.component.utils.ResourceComposable
 import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.view_model.MainViewModel
 
 sealed class Destinations {
@@ -35,6 +36,10 @@ sealed class Destinations {
             stackEntry: NavBackStackEntry,
             navController: NavHostController
         ) {
+            val viewModel = hiltViewModel<MainViewModel>()
+
+            val userName by viewModel.userName.collectAsState("")
+
             var isPalindromeMessage by remember { mutableStateOf("") }
             var showDialog by remember { mutableStateOf(false) }
 
@@ -44,15 +49,17 @@ sealed class Destinations {
                     confirmButton = {
                         TextButton(onClick = { showDialog = false }) { Text(text = "Dismiss") }
                     },
-                    text = { Text(isPalindromeMessage) }
+                    title = { Text(isPalindromeMessage) }
                 )
 
             Home(
+                name = userName,
                 onCheckClick = { string: String ->
                     isPalindromeMessage = getPalindromeCheckerDialogMessage(string)
                     showDialog = true
                 },
-                onNextClick = { navController.navigate(Second.route) }
+                onNextClick = { navController.navigate(Second.route) },
+                onChangeUserName = viewModel::setUserName
             )
         }
     }
@@ -66,7 +73,10 @@ sealed class Destinations {
             navController: NavHostController
         ) {
             val viewModel = hiltViewModel<MainViewModel>()
+
             val userName by viewModel.userName.collectAsState("")
+
+            val selectedUserName by viewModel.selectedUserName.collectAsState("")
 
             Second(
                 navigationIcon = {
@@ -75,7 +85,8 @@ sealed class Destinations {
                     }
                 },
                 name = userName,
-                showUsersList = { navController.navigate(Third.route) }
+                showUsersList = { navController.navigate(Third.route) },
+                selectedUserName = selectedUserName
             )
         }
     }
@@ -89,35 +100,35 @@ sealed class Destinations {
 
             val users: Resource<List<User>> by viewModel.users.collectAsState(initial = Resource.Loading)
 
-            when (users) {
-                is Resource.Error -> {
-                    val error = users as Resource.Error
-
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center,
-                    ) {
-                        Text(error.message)
-                    }
-                }
-                is Resource.Loading -> CircularProgressIndicator(modifier = Modifier.size(32.dp))
-                is Resource.Success -> {
-                    val success = users as Resource.Success
-
-                    Third(
+            Scaffold(
+                topBar = {
+                    TopAppBar(
+                        title = { Text(text = "Third Screen") },
                         navigationIcon = {
-                            IconButton(
-                                onClick = { navController.navigateUp() }
-                            ) {
+                            IconButton(onClick = { navController.navigateUp() }) {
                                 Icon(Icons.Default.ArrowBack, contentDescription = "Navigate back")
                             }
-                        },
-                        users = success.data
+                        }
                     )
-
+                }
+            ) { padding ->
+                ResourceComposable(users) { list ->
+                    LazyColumn(
+                        contentPadding = PaddingValues(8.dp),
+                        modifier = Modifier.padding(padding)
+                    ) {
+                        items(items = list) { user ->
+                            UserRowItem(user) {
+                                viewModel.setSelectedUser(user)
+                                navController.navigateUp()
+                            }
+                        }
+                    }
                 }
             }
         }
+
+
     }
 
     companion object {
