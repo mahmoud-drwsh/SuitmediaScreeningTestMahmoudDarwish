@@ -12,7 +12,13 @@ This project was written using Kotlin and the Jetpack Comopse UI library.
 
 <img src="https://user-images.githubusercontent.com/20232485/149094442-4c4bcc5b-2c33-4115-9a25-5a0491a486cf.png" width="500" />
 
+
+<img src="https://user-images.githubusercontent.com/20232485/149121138-d7d2af34-d20b-4956-b1a7-54371f15a7d8.png" width="500" />
+
+
 <img src="https://user-images.githubusercontent.com/20232485/149117583-01cfa96e-476b-4665-99e8-947895d9f30a.png" width="500" />
+
+
 
 
 # Download
