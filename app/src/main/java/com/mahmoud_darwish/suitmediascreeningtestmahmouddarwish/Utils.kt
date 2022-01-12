@@ -15,8 +15,11 @@ fun isPalindrome(name: String): Boolean {
 }
 
 fun getPalindromeCheckerDialogMessage(string: String) =
-    if (isPalindrome(string)) "The string is a palindrome"
-    else "The string is not a palindrome"
+    when {
+        string.isEmpty() -> "The string can not be empty"
+        isPalindrome(string) -> "The string is a palindrome"
+        else -> "The string is not a palindrome"
+    }
 
 sealed class Resource<out T> {
     object Loading : Resource<Nothing>()
