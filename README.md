@@ -3,7 +3,7 @@ This project was created and developed using **Android Studio Bumblebee version 
 
 # Introduction
 This is an Android native app.
-This project was written using Kotlin and The Jetpack Comopse UI library. 
+This project was written using Kotlin and the Jetpack Comopse UI library. 
 
 # Screenshots
 <img src="https://user-images.githubusercontent.com/20232485/149078152-beea1062-e5c0-4f94-a3b1-75b1fb5ec537.png" width="500" />
