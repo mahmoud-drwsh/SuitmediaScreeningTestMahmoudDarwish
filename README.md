@@ -5,6 +5,14 @@ This project was created and developed using **Android Studio Bumblebee version 
 This is an Android native app.
 This project was written using Kotlin and the Jetpack Comopse UI library. 
 
+## The following libraries were used
+- Jetpack Compose
+- Compose Coil
+- Material 
+- Retrofit
+- Jetpack Hilt
+- Google's Gson parsing library
+
 # Screenshots
 ***More to be added.***
 
