@@ -16,7 +16,8 @@ import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.ui.theme.buttonB
 fun Second(
     navigationIcon: @Composable () -> Unit = {},
     name: String = "Mahmoud Darwish",
-    showUsersList: () -> Unit = {}
+    showUsersList: () -> Unit = {},
+    selectedUserName: String = "A user has not been selected"
 ) {
     Scaffold(
         topBar = {
@@ -32,8 +33,6 @@ fun Second(
                 .padding(it)
                 .padding(8.dp)
         ) {
-            val text = "Selected user name"
-
             Text(text = "Welcome", style = MaterialTheme.typography.body2)
             Text(text = name, style = MaterialTheme.typography.h6)
 
@@ -42,7 +41,7 @@ fun Second(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = text,
+                    text = selectedUserName,
                     modifier = Modifier
                         .fillMaxWidth(),
                     textAlign = TextAlign.Center

@@ -22,10 +22,11 @@ import com.mahmoud_darwish.suitmediascreeningtestmahmouddarwish.ui.theme.buttonB
 @Preview(showBackground = true)
 @Composable
 fun Home(
-    name: MutableState<String> = remember { mutableStateOf("") },
+    name: String = "",
     palindrome: MutableState<String> = remember { mutableStateOf("") },
     onCheckClick: (String) -> Unit = {},
     onNextClick: () -> Unit = {},
+    onChangeUserName: (String) -> Unit = {},
 ) {
     Box(Modifier.fillMaxSize()) {
         Image(
@@ -56,8 +57,8 @@ fun Home(
                     .fillMaxWidth()
                     .padding(top = 32.dp),
                 shape = RoundedCornerShape(8.dp),
-                value = name.value,
-                onValueChange = name::value::set,
+                value = name,
+                onValueChange = onChangeUserName,
                 label = { Text("Name") },
                 visualTransformation = VisualTransformation.None,
                 colors = TextFieldDefaults.textFieldColors(
